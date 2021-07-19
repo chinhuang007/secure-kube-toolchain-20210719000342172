@@ -15,9 +15,6 @@ spec:
       default: ""
     - name: app-name
       description: application name
-    - name: fail-on-lint-errors
-      description: force failure of task when docker lint errors are found
-      default: "true"
     - name: registry-region
       description: The IBM Cloud region for image registry
     - name: registry-namespace
@@ -90,8 +87,6 @@ spec:
             value: $(params.revision)
           - name: app-name
             value: $(params.app-name)
-          - name: fail-on-lint-errors
-            value: $(params.fail-on-lint-errors)
           - name: registry-region
             value: $(params.registry-region)
           - name: registry-namespace
