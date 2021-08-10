@@ -28,10 +28,8 @@ spec:
       description: toggles debug mode for the pipeline
     - name: ibmapikey
       description: the ibmcloud api key
-      default: test1243
     - name: kubernetes-cluster
       description: cluster name
-      default: chhuang-modelmesh
     - name: serving-ns
       description: modelmesh serving namespace
       default: modelmesh-serving
