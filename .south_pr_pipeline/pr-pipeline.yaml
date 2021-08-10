@@ -67,7 +67,7 @@ spec:
       taskRef:
         name: git-set-commit-status
       workspaces:
-        - name: artifacts
+        - name: task-pvc
           workspace: pipeline-ws
       params:
         - name: repository
@@ -106,13 +106,13 @@ spec:
         #      exit 1
         #    fi
       workspaces:
-        - name: artifacts
+        - name: task-pvc
           workspace: pipeline-ws
     - name: cra-discovery-scan-pending
       taskRef:
         name: git-set-commit-status
       workspaces:
-        - name: artifacts
+        - name: task-pvc
           workspace: pipeline-ws
       params:
         - name: repository
@@ -134,7 +134,7 @@ spec:
       taskRef:
         name: cra-discovery
       workspaces:
-        - name: artifacts
+        - name: task-pvc
           workspace: pipeline-ws
       params:
         - name: repository
@@ -155,7 +155,7 @@ spec:
       taskRef:
         name: git-set-commit-status
       workspaces:
-        - name: artifacts
+        - name: task-pvc
           workspace: pipeline-ws
       params:
         - name: state
@@ -177,7 +177,7 @@ spec:
       taskRef:
         name: cra-vulnerability-remediation
       workspaces:
-        - name: artifacts
+        - name: task-pvc
           workspace: pipeline-ws
         - name: secrets
           workspace: pipeline-ws
@@ -200,7 +200,7 @@ spec:
       taskRef:
         name: git-set-commit-status
       workspaces:
-        - name: artifacts
+        - name: task-pvc
           workspace: pipeline-ws
       params:
         - name: state
@@ -224,7 +224,7 @@ spec:
       workspaces:
         - name: secrets
           workspace: pipeline-ws
-        - name: artifacts
+        - name: task-pvc
           workspace: pipeline-ws
       params:
         - name: repository
@@ -247,7 +247,7 @@ spec:
       taskRef:
         name: git-set-commit-status
       workspaces:
-        - name: artifacts
+        - name: task-pvc
           workspace: pipeline-ws
       params:
         - name: state
@@ -269,7 +269,7 @@ spec:
         - cra-discovery-scan
         - code-bom-check-status-pending
       workspaces:
-        - name: artifacts
+        - name: task-pvc
           workspace: pipeline-ws
         - name: secrets
           workspace: pipeline-ws          
@@ -296,7 +296,7 @@ spec:
       taskRef:
         name: git-set-commit-status
       workspaces:
-        - name: artifacts
+        - name: task-pvc
           workspace: pipeline-ws
       params:
         - name: repository
@@ -315,7 +315,7 @@ spec:
       taskRef:
         name: git-set-commit-status
       workspaces:
-        - name: artifacts
+        - name: task-pvc
           workspace: pipeline-ws
       params:
         - name: repository
@@ -334,7 +334,7 @@ spec:
       taskRef:
         name: git-set-commit-status
       workspaces:
-        - name: artifacts
+        - name: task-pvc
           workspace: pipeline-ws
       params:
         - name: repository
@@ -353,7 +353,7 @@ spec:
       taskRef:
         name: git-set-commit-status
       workspaces:
-        - name: artifacts
+        - name: task-pvc
           workspace: pipeline-ws
       params:
         - name: state
@@ -372,7 +372,7 @@ spec:
       taskRef:
         name: git-set-commit-status
       workspaces:
-        - name: artifacts
+        - name: task-pvc
           workspace: pipeline-ws
       params:
         - name: state
