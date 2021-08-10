@@ -85,6 +85,7 @@ spec:
               source ./test/run-tests.sh
             else
               echo "Test runner script not found: ./test/run-tests.sh"
+              exit 1
             fi
       workspaces:
         - name: artifacts
