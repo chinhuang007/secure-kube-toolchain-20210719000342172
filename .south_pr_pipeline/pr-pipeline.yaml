@@ -26,6 +26,19 @@ spec:
       default: ""
     - name: pipeline-debug
       description: toggles debug mode for the pipeline
+    - name: apikey
+      description: the ibmcloud api key
+    - name: serving-ns
+      description: modelmesh serving namespace
+      default: modelmesh-serving
+    - name: kubernetes-cluster
+      description: cluster name
+    - name: slack-webhook
+      description: webhook URL
+      default: ""
+    - name: slack-channel
+      description: slack channel
+      default: ""
   workspaces:
     - name: pipeline-ws
 
