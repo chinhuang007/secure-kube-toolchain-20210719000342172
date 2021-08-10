@@ -77,8 +77,20 @@ spec:
     - name: unit-tests
       runAfter: [git-clone]
       taskRef:
-        name: tester-run-tests
+        name: e2e-test
       params:
+        - name: apikey
+          value: $(params.apikey)
+        - name: kubernetes-cluster
+          value: $(params.kubernetes-cluster)
+        - name: serving-ns
+          value: $(params.serving-ns)
+        - name: slack-webhook
+          value: $(params.slack-webhook)
+        - name: slack-channel
+          value: $(params.slack-channel)
+        - name: test-script
+          value: "scripts/deploy/iks/test-fvt.sh"
         - name: tests-script
           value: |
             if [ -f ./test/run-tests.sh ]; then
