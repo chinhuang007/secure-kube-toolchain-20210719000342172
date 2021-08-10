@@ -30,6 +30,10 @@ spec:
       description: modelmesh serving namespace
     - name: kubernetes-cluster
       description: cluster name
+    - name: docker-password
+      description: iam api key
+    - name: ibmapikey
+      description: the ibmcloud api key
   workspaces:
     - name: pipeline-ws
 

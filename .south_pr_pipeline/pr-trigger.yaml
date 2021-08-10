@@ -30,7 +30,11 @@ spec:
     - name: serving-ns
       description: modelmesh serving namespace
     - name: kubernetes-cluster
-      description: cluster name      
+      description: cluster name
+    - name: docker-password
+      description: iam api key
+    - name: ibmapikey
+      description: the ibmcloud api key
   resourcetemplates:
     - apiVersion: v1
       kind: PersistentVolumeClaim
@@ -81,3 +85,7 @@ spec:
             value: $(params.serving-ns)
           - name: kubernetes-cluster
             value: $(params.kubernetes-cluster)
+          - name: docker-password
+            value: $(params.docker-password)
+          - name: ibmapikey
+            value: $(params.ibmapikey)
