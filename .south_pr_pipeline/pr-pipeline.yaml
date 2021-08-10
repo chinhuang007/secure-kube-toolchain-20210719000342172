@@ -26,6 +26,8 @@ spec:
       default: ""
     - name: pipeline-debug
       description: toggles debug mode for the pipeline
+    - name: ibmapikey
+      description: the ibmcloud api key
     - name: kubernetes-cluster
       description: cluster name
       default: chhuang-modelmesh
@@ -92,7 +94,7 @@ spec:
         name: e2e-test
       params:
         - name: apikey
-          value: $(params.target-repository)
+          value: $(params.ibmapikey)
         - name: kubernetes-cluster
           value: $(params.kubernetes-cluster)
         - name: serving-ns
