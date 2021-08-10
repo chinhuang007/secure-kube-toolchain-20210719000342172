@@ -94,7 +94,7 @@ spec:
         - name: apikey
           value: $(params.target-repository)
         - name: kubernetes-cluster
-          value: $(params.target-repository)
+          value: $(params.kubernetes-cluster)
         - name: serving-ns
           value: $(params.serving-ns)
         - name: slack-webhook
