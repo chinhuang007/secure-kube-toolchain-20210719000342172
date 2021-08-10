@@ -26,6 +26,10 @@ spec:
       default: ""
     - name: pipeline-debug
       description: toggles debug mode for the pipeline
+    - name: serving-ns
+      description: modelmesh serving namespace
+    - name: kubernetes-cluster
+      description: cluster name
   workspaces:
     - name: pipeline-ws
 
@@ -77,16 +81,26 @@ spec:
     - name: unit-tests
       runAfter: [git-clone]
       taskRef:
-        name: tester-run-tests
+        name: deploy
       params:
-        - name: tests-script
-          value: |
-            if [ -f ./test/run-tests.sh ]; then
-              source ./test/run-tests.sh
-            else
-              echo "Test runner script not found: ./test/run-tests.sh"
-              exit 1
-            fi
+        - name: apikey
+          value: $(params.ibmapikey)
+        - name: docker-username
+          value: iamapikey
+        - name: docker-password
+          value: $(params.docker-password)
+        - name: kubernetes-cluster
+          value: $(params.kubernetes-cluster)
+        - name: serving-ns
+          value: $(params.serving-ns)
+        #- name: tests-script
+        #  value: |
+        #    if [ -f ./test/run-tests.sh ]; then
+        #      source ./test/run-tests.sh
+        #    else
+        #      echo "Test runner script not found: ./test/run-tests.sh"
+        #      exit 1
+        #    fi
       workspaces:
         - name: artifacts
           workspace: pipeline-ws
