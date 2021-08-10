@@ -26,19 +26,6 @@ spec:
       default: ""
     - name: pipeline-debug
       description: toggles debug mode for the pipeline
-    - name: ibmapikey
-      description: the ibmcloud api key
-    - name: kubernetes-cluster
-      description: cluster name
-    - name: serving-ns
-      description: modelmesh serving namespace
-      default: modelmesh-serving
-    - name: slack-webhook
-      description: webhook URL
-      default: ""
-    - name: slack-channel
-      description: slack channel
-      default: ""
   workspaces:
     - name: pipeline-ws
 
@@ -90,28 +77,16 @@ spec:
     - name: unit-tests
       runAfter: [git-clone]
       taskRef:
-        name: e2e-test
+        name: tester-run-tests
       params:
-        - name: apikey
-          value: $(params.ibmapikey)
-        - name: kubernetes-cluster
-          value: $(params.kubernetes-cluster)
-        - name: serving-ns
-          value: $(params.serving-ns)
-        - name: slack-webhook
-          value: $(params.slack-webhook)
-        - name: slack-channel
-          value: $(params.slack-channel)
-        - name: test-script
-          value: "scripts/deploy/iks/test-fvt.sh"
-        #- name: tests-script
-        #  value: |
-        #    if [ -f ./test/run-tests.sh ]; then
-        #      source ./test/run-tests.sh
-        #    else
-        #      echo "Test runner script not found: ./test/run-tests.sh"
-        #      exit 1
-        #    fi
+        - name: tests-script
+          value: |
+            if [ -f ./test/run-tests.sh ]; then
+              source ./test/run-tests.sh
+            else
+              echo "Test runner script not found: ./test/run-tests.sh"
+              exit 1
+            fi
       workspaces:
         - name: artifacts
           workspace: pipeline-ws
