@@ -26,6 +26,9 @@ spec:
       default: ""
     - name: pipeline-debug
       description: toggles debug mode for the pipeline
+    - name: kubernetes-cluster
+      description: cluster name
+      default: chhuang-modelmesh
     - name: serving-ns
       description: modelmesh serving namespace
       default: modelmesh-serving
@@ -100,14 +103,14 @@ spec:
           value: $(params.slack-channel)
         - name: test-script
           value: "scripts/deploy/iks/test-fvt.sh"
-        - name: tests-script
-          value: |
-            if [ -f ./test/run-tests.sh ]; then
-              source ./test/run-tests.sh
-            else
-              echo "Test runner script not found: ./test/run-tests.sh"
-              exit 1
-            fi
+        #- name: tests-script
+        #  value: |
+        #    if [ -f ./test/run-tests.sh ]; then
+        #      source ./test/run-tests.sh
+        #    else
+        #      echo "Test runner script not found: ./test/run-tests.sh"
+        #      exit 1
+        #    fi
       workspaces:
         - name: artifacts
           workspace: pipeline-ws
