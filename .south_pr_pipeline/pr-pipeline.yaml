@@ -106,8 +106,8 @@ spec:
         #      exit 1
         #    fi
       workspaces:
-        - name: artifacts
-          workspace: pipeline-ws
+        #- name: artifacts
+        #  workspace: pipeline-ws
         - name: task-pvc
           workspace: pipeline-ws
     - name: cra-discovery-scan-pending
