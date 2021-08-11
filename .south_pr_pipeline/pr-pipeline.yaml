@@ -150,25 +150,6 @@ spec:
         - name: task-pvc
           workspace: pipeline-ws
   finally:
-    - name: cra-discovery-scan-finished
-      taskRef:
-        name: git-set-commit-status
-      workspaces:
-        - name: artifacts
-          workspace: pipeline-ws
-      params:
-        - name: repository
-          value: $(params.target-repository)
-        - name: revision
-          value: $(params.pr-commit-id)
-        - name: context
-          value: "Discovery"
-        - name: description
-          value: "Deep discovery completed"
-        - name: state
-          value: "$(tasks.cra-discovery-scan.status)"
-        - name: pipeline-debug
-          value: $(params.pipeline-debug)
     - name: unit-tests-status-finished
       taskRef:
         name: git-set-commit-status
