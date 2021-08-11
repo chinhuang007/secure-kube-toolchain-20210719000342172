@@ -35,6 +35,17 @@ spec:
       description: iam api key
     - name: ibmapikey
       description: the ibmcloud api key
+    - name: resource-group
+      description: resource group
+      default: default
+    - name: region
+      description: the ibmcloud registry region
+      default: us-south
+    - name: org
+      description: organization
+    - name: space
+      description: space
+      default: dev
   resourcetemplates:
     - apiVersion: v1
       kind: PersistentVolumeClaim
@@ -89,3 +100,11 @@ spec:
             value: $(params.docker-password)
           - name: ibmapikey
             value: $(params.ibmapikey)
+          - name: resource-group
+            value: $(params.resource-group)
+          - name: region
+            value: $(params.region)
+          - name: org
+            value: $(params.org)
+          - name: space
+            value: $(params.space)
