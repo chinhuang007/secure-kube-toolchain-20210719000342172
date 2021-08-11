@@ -152,6 +152,10 @@ spec:
           value: ""
         - name: run-task
           value: build_test
+        - name: kubernetes-cluster
+          value: $(params.kubernetes-cluster)
+        - name: serving-ns
+          value: $(params.serving-ns)
       workspaces:
         - name: task-pvc
           workspace: pipeline-ws
