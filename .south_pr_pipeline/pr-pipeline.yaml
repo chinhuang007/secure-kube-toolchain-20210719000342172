@@ -149,32 +149,6 @@ spec:
         #  workspace: pipeline-ws
         - name: task-pvc
           workspace: pipeline-ws
-   
-      taskRef:
-        name: cra-cis-check
-      runAfter:
-        - cra-discovery-scan
-        - code-cis-check-status-pending
-      workspaces:
-        - name: secrets
-          workspace: pipeline-ws
-        - name: artifacts
-          workspace: pipeline-ws
-      params:
-        - name: repository
-          value: $(params.target-repository)
-        - name: revision
-          value: $(params.pr-branch)
-        - name: pr-url
-          value: $(params.pr-url)
-        - name: commit-id
-          value: $(params.pr-commit-id)
-        - name: directory-name
-          value: ""
-        - name: scm-type
-          value: $(params.scm-type)
-        - name: project-id
-          value: $(params.project-id)
   finally:
     - name: cra-discovery-scan-finished
       taskRef:
