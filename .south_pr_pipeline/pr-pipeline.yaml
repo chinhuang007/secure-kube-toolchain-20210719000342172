@@ -124,29 +124,35 @@ spec:
     - name: unit-tests
       runAfter: [setup-env]
       taskRef:
-        name: deploy
+        name: build-images-dnd
       params:
         - name: apikey
           value: $(params.ibmapikey)
+        - name: image-name
+          value: modelmesh-serving
+        - name: docker-root
+          value: .
+        - name: docker-file
+          value: ""
+        - name: registry-url
+          value: ""
+        - name: registry-namespace
+          value: ""
         - name: docker-username
           value: iamapikey
         - name: docker-password
           value: $(params.docker-password)
-        - name: kubernetes-cluster
-          value: $(params.kubernetes-cluster)
-        - name: serving-ns
-          value: $(params.serving-ns)
-        #- name: tests-script
-        #  value: |
-        #    if [ -f ./test/run-tests.sh ]; then
-        #      source ./test/run-tests.sh
-        #    else
-        #      echo "Test runner script not found: ./test/run-tests.sh"
-        #      exit 1
-        #    fi
+        - name: dockerhub-username
+          value: ""
+        - name: dockerhub-password
+          value: ""
+        - name: dockerhub-namespace
+          value: ""
+        - name: publish-tag
+          value: ""
+        - name: run-task
+          value: build
       workspaces:
-        #- name: artifacts
-        #  workspace: pipeline-ws
         - name: task-pvc
           workspace: pipeline-ws
   finally:
