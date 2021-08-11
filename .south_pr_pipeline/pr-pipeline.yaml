@@ -151,7 +151,7 @@ spec:
         - name: publish-tag
           value: ""
         - name: run-task
-          value: build
+          value: build_test
       workspaces:
         - name: task-pvc
           workspace: pipeline-ws
