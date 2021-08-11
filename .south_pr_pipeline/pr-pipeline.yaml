@@ -97,9 +97,9 @@ spec:
         name: test
       params:
         - name: repository
-          value: https://github.com/chinhuang007/modelmesh-serving
+          value: $(params.target-repository)
         - name: revision
-          value: main
+          value: $(params.pr-commit-id)
         - name: apikey
           value: $(params.ibmapikey)
         - name: registry-namespace
@@ -116,6 +116,8 @@ spec:
           value: $(params.region)
         - name: space
           value: $(params.space)
+        - name: skip-clone
+          value: "1"
       workspaces:
       - name: task-pvc
         workspace: pipeline-ws
