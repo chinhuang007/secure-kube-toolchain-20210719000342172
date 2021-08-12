@@ -118,6 +118,10 @@ spec:
           value: $(params.space)
         - name: skip-clone
           value: "1"
+        - name: kubernetes-cluster
+          value: $(params.kubernetes-cluster)
+        - name: serving-ns
+          value: $(params.serving-ns)
       workspaces:
       - name: task-pvc
         workspace: pipeline-ws
@@ -152,10 +156,6 @@ spec:
           value: ""
         - name: run-task
           value: build_test
-        - name: kubernetes-cluster
-          value: $(params.kubernetes-cluster)
-        - name: serving-ns
-          value: $(params.serving-ns)
       workspaces:
         - name: task-pvc
           workspace: pipeline-ws
