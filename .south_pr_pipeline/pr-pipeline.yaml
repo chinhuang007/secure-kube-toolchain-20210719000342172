@@ -72,7 +72,7 @@ spec:
       workspaces:
         - name: output
           workspace: pipeline-ws
-    - name: unit-tests-status-pending
+    - name: fvt-tests-status-pending
       taskRef:
         name: git-set-commit-status
       workspaces:
@@ -84,9 +84,9 @@ spec:
         - name: revision
           value: $(params.pr-commit-id)
         - name: context
-          value: "Unit tests"
+          value: "FVT tests"
         - name: description
-          value: "Unit tests successfull"
+          value: "FVT tests successfull"
         - name: state
           value: "pending"
         - name: pipeline-debug
@@ -125,7 +125,7 @@ spec:
       workspaces:
       - name: task-pvc
         workspace: pipeline-ws
-    - name: unit-tests
+    - name: fvt-tests
       runAfter: [setup-env]
       taskRef:
         name: build-images-dnd
@@ -160,7 +160,32 @@ spec:
         - name: task-pvc
           workspace: pipeline-ws
   finally:
-    - name: unit-tests-status-finished
+    - name: cleanup-namespace
+      taskRef:
+        name: iks-test
+      params:
+        - name: apikey
+          value: $(params.ibmapikey)
+        - name: kubernetes-cluster
+          value: $(params.kubernetes-cluster)
+        - name: serving-ns
+          value: $(params.serving-ns)
+        - name: resource-group
+          value: $(params.resource-group)
+        - name: org
+          value: $(params.org)
+        - name: region
+          value: $(params.region)
+        - name: space
+          value: $(params.space)
+        - name: test-commands
+          value: |
+            kubectl delete ns $(params.serving-ns) || true
+            kubectl delete job --all -n default || true
+      workspaces:
+      - name: task-pvc
+        workspace: pipeline-ws
+    - name: fvt-tests-status-finished
       taskRef:
         name: git-set-commit-status
       workspaces:
@@ -172,10 +197,10 @@ spec:
         - name: revision
           value: $(params.pr-commit-id)
         - name: context
-          value: "Unit tests"
+          value: "FVT tests"
         - name: description
-          value: "Unit tests successfull"
+          value: "FVT tests successfull"
         - name: state
-          value: "$(tasks.unit-tests.status)"
+          value: "$(tasks.fvt-tests.status)"
         - name: pipeline-debug
           value: $(params.pipeline-debug)
